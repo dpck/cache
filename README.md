@@ -18,6 +18,7 @@ yarn add -E @depack/cache
   * [`Result`](#type-result)
 - [No Cache](#no-cache)
 - [Mtime Change](#mtime-change)
+- [Hash Update](#hash-update)
 - [Copyright](#copyright)
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/0.svg?sanitize=true"></a></p>
@@ -140,16 +141,43 @@ console.log(res)
 ```js
 { result: false,
   reason: 'MTIME_CHANGE',
-  mtime: 1554395254000,
+  mtime: 1554399727000,
   hash: 
    [ 'os',
      'example/source/dep.js 1554389422000',
      'static-analysis 1.3.3' ],
-  currentMtime: 1554395253000,
+  currentMtime: 1554399726000,
   md5: '70914015974a8f1baccd4d9dc456d34b' }
 ```
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/4.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/4.svg?sanitize=true" width="25"></a></p>
+
+## Hash Update
+
+The hash is an array with strings that show what version of a dependency/file are used by the entry source file. They are saved in cache in the full array form rather than `md5` itself so that it is possible to log about when the changes were made and to which files.
+
+```js
+let cache = {}
+const { mtime, hash } = await compare(path, cache)
+cache[path] = { mtime, hash }
+await update()
+const res = await compare(path, cache)
+console.log(res)
+```
+```js
++ myPackage 2.0.0
+- myPackage 1.0.0
+{ result: false,
+  mtime: 1554399728000,
+  hash: 
+   [ 'os',
+     'example/source/dep.js 1554389422000',
+     'myPackage 2.0.0' ],
+  reason: 'HASH_CHANGE',
+  md5: 'e63748b82a0cef09ee772206244a076e' }
+```
+
+<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/5.svg?sanitize=true"></a></p>
 
 ## Copyright
 

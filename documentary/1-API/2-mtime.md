@@ -5,4 +5,4 @@ If the module's `mtime` has changed, the result will be false, with the new `mti
 %EXAMPLE: example/mtime, ../src => @depack/cache%
 %FORK-js example/mtime%
 
-%~%
+%~ width="25"%
