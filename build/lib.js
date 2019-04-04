@@ -33,7 +33,7 @@ let makePromise = require('makepromise'); if (makePromise && makePromise.__esMod
 
 const getMetaToPrint = (mm) => {
   const [entry, meta] = mm.split(' ')
-  let mmeta
+  let mmeta = ''
   if (meta) {
     mmeta = /^\d+$/.test(meta) ? new Date(parseInt(meta)).toLocaleString() : meta
   }

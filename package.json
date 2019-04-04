@@ -28,7 +28,11 @@
   },
   "keywords": [
     "cache",
-    "depack"
+    "depack",
+    "modules",
+    "mtime",
+    "dependencies",
+    "update"
   ],
   "author": "Anton <anton@adc.sh>",
   "license": "MIT",
