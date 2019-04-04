@@ -20,4 +20,6 @@ Checks the entry file's `mtime`, calculates its dependencies and compare against
 
 %TYPEDEF types/index.xml%
 
+There are multiple scenarios when using this package. Examples of each are given in the examples below.
+
 %~ width="25"%

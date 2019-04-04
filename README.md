@@ -54,11 +54,13 @@ __<a name="type-result">`Result`</a>__: The return type of the program.
 | __hash*__   | _Array&lt;string&gt;_                             | The analysis array that is used for comparison and user-friendly display of what dependencies changed. |
 | __md5*__    | _string_                                          | The `md5` of the hash array.                                                                           |
 
+There are multiple scenarios when using this package. Examples of each are given in the examples below.
+
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/2.svg?sanitize=true" width="25"></a></p>
 
 ### No Cache
 
-There are multiple scenarios when using this package. The first instance is when the cache entry does not exist. The cache can be stored in a `json` file, and read with the `require` function (but the `delete require.cache[path]` must be called first), or using `fs.readFileSync` or any other read method and then parsing the cache.
+The first instance is when the cache entry does not exist. The cache can be stored in a `json` file, and read with the `require` function (but the `delete require.cache[path]` must be called first), or using `fs.readFileSync` or any other read method and then parsing the cache.
 
 _For example, given the following dir:_
 
@@ -112,9 +114,12 @@ _It will return the result that indicates that the cache does not exist, and pro
 ```js
 { result: false,
   reason: 'NO_CACHE',
-  mtime: 1554389547000,
-  hash: [ 'os', 'example/source/dep.js 1554389422000' ],
-  md5: '4a9197d65e588322410e2a2637328eaa' }
+  mtime: 1554390116000,
+  hash: 
+   [ 'os',
+     'example/source/dep.js 1554389422000',
+     'static-analysis 1.3.3' ],
+  md5: '70914015974a8f1baccd4d9dc456d34b' }
 ```
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/3.svg?sanitize=true" width="25"></a></p>
