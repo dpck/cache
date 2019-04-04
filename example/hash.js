@@ -20,7 +20,7 @@ const HashExample = async (path, update) => {
   try {
     await tc._init()
     await tc.add('example/source')
-    const f = 'source/index2.js'
+    const f = 'source/index.js'
     const path = `example/temp/${f}`
     const file = await tc.read(f)
     const fix = file.replace('\'./dep\'', '\'../../source/dep\'')

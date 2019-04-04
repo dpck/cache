@@ -71,6 +71,7 @@ _For example, given the following dir:_
 import { homedir } from 'os'
 import dep from './dep'
 import staticAnalysis from 'static-analysis'
+import myPackage from 'myPackage'
 ```
 `example/source/dep.js`
 ```js
@@ -116,12 +117,13 @@ _It will return the result that indicates that the cache does not exist, and pro
 ```js
 { result: false,
   reason: 'NO_CACHE',
-  mtime: 1554390116000,
+  mtime: 1554399982000,
   hash: 
    [ 'os',
      'example/source/dep.js 1554389422000',
-     'static-analysis 1.3.3' ],
-  md5: '70914015974a8f1baccd4d9dc456d34b' }
+     'static-analysis 1.3.3',
+     'myPackage 1.0.0' ],
+  md5: 'c15feeca59ae71a943447324cfe36c18' }
 ```
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/3.svg?sanitize=true" width="25"></a></p>
@@ -141,13 +143,14 @@ console.log(res)
 ```js
 { result: false,
   reason: 'MTIME_CHANGE',
-  mtime: 1554399876000,
+  mtime: 1554399991000,
   hash: 
    [ 'os',
      'example/source/dep.js 1554389422000',
-     'static-analysis 1.3.3' ],
-  currentMtime: 1554399875000,
-  md5: '70914015974a8f1baccd4d9dc456d34b' }
+     'static-analysis 1.3.3',
+     'myPackage 1.0.0' ],
+  currentMtime: 1554399990000,
+  md5: 'c15feeca59ae71a943447324cfe36c18' }
 ```
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/4.svg?sanitize=true" width="25"></a></p>
@@ -168,13 +171,14 @@ console.log(res)
 + myPackage 1.0.1
 - myPackage 1.0.0
 { result: false,
-  mtime: 1554399877000,
+  mtime: 1554399992000,
   hash: 
    [ 'os',
      'example/source/dep.js 1554389422000',
+     'static-analysis 1.3.3',
      'myPackage 1.0.1' ],
   reason: 'HASH_CHANGE',
-  md5: '1cd8d50a70c67c5a582b04f9fd9d7f4a' }
+  md5: '60cc5c97da255f3210ea87497bd2510e' }
 ```
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/5.svg?sanitize=true"></a></p>
