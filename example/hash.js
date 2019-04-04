@@ -29,7 +29,7 @@ const HashExample = async (path, update) => {
       const p = 'source/node_modules/myPackage/package.json'
       tc.resolve(p)
       const pckg = require(`../${tc.resolve(p)}`)
-      pckg.version = '2.0.0'
+      pckg.version = '1.0.1'
       await tc.write(p, JSON.stringify(pckg, null, 2))
     })
   } finally {

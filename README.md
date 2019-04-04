@@ -141,12 +141,12 @@ console.log(res)
 ```js
 { result: false,
   reason: 'MTIME_CHANGE',
-  mtime: 1554399727000,
+  mtime: 1554399876000,
   hash: 
    [ 'os',
      'example/source/dep.js 1554389422000',
      'static-analysis 1.3.3' ],
-  currentMtime: 1554399726000,
+  currentMtime: 1554399875000,
   md5: '70914015974a8f1baccd4d9dc456d34b' }
 ```
 
@@ -165,16 +165,16 @@ const res = await compare(path, cache)
 console.log(res)
 ```
 ```js
-+ myPackage 2.0.0
++ myPackage 1.0.1
 - myPackage 1.0.0
 { result: false,
-  mtime: 1554399728000,
+  mtime: 1554399877000,
   hash: 
    [ 'os',
      'example/source/dep.js 1554389422000',
-     'myPackage 2.0.0' ],
+     'myPackage 1.0.1' ],
   reason: 'HASH_CHANGE',
-  md5: 'e63748b82a0cef09ee772206244a076e' }
+  md5: '1cd8d50a70c67c5a582b04f9fd9d7f4a' }
 ```
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/5.svg?sanitize=true"></a></p>
