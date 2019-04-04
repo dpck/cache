@@ -12,9 +12,10 @@ yarn add -E @depack/cache
 
 - [Table Of Contents](#table-of-contents)
 - [API](#api)
-- [`compare(path: string, cache?: Cache, log?: function): CompareResult`](#comparepath-stringcache-cachelog-function-compareresult)
+- [`compare(path: string, cache?: Cache, log?: function): Result`](#comparepath-stringcache-cachelog-function-result)
   * [`Cache`](#type-cache)
   * [`CacheEntry`](#type-cacheentry)
+  * [`Result`](#type-result)
   * [No Cache](#no-cache)
 - [Copyright](#copyright)
 
@@ -30,7 +31,7 @@ import compare from '@depack/cache'
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/1.svg?sanitize=true"></a></p>
 
-## `compare(`<br/>&nbsp;&nbsp;`path: string,`<br/>&nbsp;&nbsp;`cache?: Cache,`<br/>&nbsp;&nbsp;`log?: function,`<br/>`): CompareResult`
+## `compare(`<br/>&nbsp;&nbsp;`path: string,`<br/>&nbsp;&nbsp;`cache?: Cache,`<br/>&nbsp;&nbsp;`log?: function,`<br/>`): Result`
 
 Checks the entry file's `mtime`, calculates its dependencies and compare against the values stored in the cache object. When the result is negative, the cache object must be updated with the result returned by the function. The `log` function is used to display what changes have been made to the dependencies.
 
@@ -42,6 +43,16 @@ __<a name="type-cacheentry">`CacheEntry`</a>__: A single entry in the cache.
 | ---------- | --------------------- | ----------------------------------------------------------------------------------------------------------- |
 | __mtime*__ | _number_              | The `mtime` of the source file.                                                                             |
 | __hash*__  | _Array&lt;string&gt;_ | The analysis array containing strings with internal, external and built-in dependencies and their versions. |
+
+__<a name="type-result">`Result`</a>__: The return type of the program.
+
+|    Name     |                       Type                        |                                              Description                                               |
+| ----------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| __result*__ | _boolean_                                         | Whether the result of the comparison was successul.                                                    |
+| __reason*__ | _('NO_CACHE' \| 'MTIME_CHANGE' \| 'HASH_CHANGE')_ | The reason for the failed comparison.                                                                  |
+| __mtime*__  | _number_                                          | The `mtime` of when the entry file was changed.                                                        |
+| __hash*__   | _Array&lt;string&gt;_                             | The analysis array that is used for comparison and user-friendly display of what dependencies changed. |
+| __md5*__    | _string_                                          | The `md5` of the hash array.                                                                           |
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/2.svg?sanitize=true" width="25"></a></p>
 

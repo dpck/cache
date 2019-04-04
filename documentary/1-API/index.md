@@ -8,7 +8,7 @@ import compare from '@depack/cache'
 
 %~%
 
-```## compare => CompareResult
+```## compare => Result
 [
   ["path", "string"],
   ["cache?", "Cache"],
