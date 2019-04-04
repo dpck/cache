@@ -143,13 +143,13 @@ console.log(res)
 ```js
 { result: false,
   reason: 'MTIME_CHANGE',
-  mtime: 1554399991000,
+  mtime: 1554400394000,
   hash: 
    [ 'os',
      'example/source/dep.js 1554389422000',
      'static-analysis 1.3.3',
      'myPackage 1.0.0' ],
-  currentMtime: 1554399990000,
+  currentMtime: 1554400393000,
   md5: 'c15feeca59ae71a943447324cfe36c18' }
 ```
 
@@ -168,17 +168,21 @@ const res = await compare(path, cache)
 console.log(res)
 ```
 ```js
++ example/temp/source/dep.js 2019-4-4 20:53:16
 + myPackage 1.0.1
++ path 
+- example/temp/source/dep.js 2019-4-4 20:53:15
 - myPackage 1.0.0
 { result: false,
-  mtime: 1554399992000,
+  mtime: 1554400395000,
   hash: 
    [ 'os',
-     'example/source/dep.js 1554389422000',
+     'example/temp/source/dep.js 1554400396000',
      'static-analysis 1.3.3',
-     'myPackage 1.0.1' ],
+     'myPackage 1.0.1',
+     'path' ],
   reason: 'HASH_CHANGE',
-  md5: '60cc5c97da255f3210ea87497bd2510e' }
+  md5: '2812d6911c7f429a8a2153bf4792415e' }
 ```
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/5.svg?sanitize=true"></a></p>

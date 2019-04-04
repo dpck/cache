@@ -33,7 +33,7 @@ export const compareHash = (currentHash, hash, log = console.log) => {
 
 const getMetaToPrint = (mm) => {
   const [entry, meta] = mm.split(' ')
-  let mmeta
+  let mmeta = ''
   if (meta) {
     mmeta = /^\d+$/.test(meta) ? new Date(parseInt(meta)).toLocaleString() : meta
   }
