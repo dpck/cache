@@ -1,4 +1,4 @@
-### No Cache
+## No Cache
 
 The first instance is when the cache entry does not exist. The cache can be stored in a `json` file, and read with the `require` function (but the `delete require.cache[path]` must be called first), or using `fs.readFileSync` or any other read method and then parsing the cache.
 

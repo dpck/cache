@@ -16,7 +16,8 @@ yarn add -E @depack/cache
   * [`Cache`](#type-cache)
   * [`CacheEntry`](#type-cacheentry)
   * [`Result`](#type-result)
-  * [No Cache](#no-cache)
+- [No Cache](#no-cache)
+- [Mtime Change](#mtime-change)
 - [Copyright](#copyright)
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/0.svg?sanitize=true"></a></p>
@@ -58,7 +59,7 @@ There are multiple scenarios when using this package. Examples of each are given
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/2.svg?sanitize=true" width="25"></a></p>
 
-### No Cache
+## No Cache
 
 The first instance is when the cache entry does not exist. The cache can be stored in a `json` file, and read with the `require` function (but the `delete require.cache[path]` must be called first), or using `fs.readFileSync` or any other read method and then parsing the cache.
 
@@ -124,6 +125,29 @@ _It will return the result that indicates that the cache does not exist, and pro
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/3.svg?sanitize=true" width="25"></a></p>
 
+## Mtime Change
+
+If the module's `mtime` has changed, the result will be false, with the new `mtime` returned so that it can be updated. The current implementation is coupled to `mtime` logic, therefore when transferring onto other machines via _git_ for example, the cache will fail. It might be improved in the future.
+
+```js
+let cache = {}
+const { mtime, hash } = await compare(path, cache)
+cache[path] = { mtime, hash }
+await update()
+const res = await compare(path, cache)
+console.log(res)
+```
+```js
+{ result: false,
+  reason: 'MTIME_CHANGE',
+  mtime: 1554395254000,
+  hash: 
+   [ 'os',
+     'example/source/dep.js 1554389422000',
+     'static-analysis 1.3.3' ],
+  currentMtime: 1554395253000,
+  md5: '70914015974a8f1baccd4d9dc456d34b' }
+```
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/4.svg?sanitize=true"></a></p>
 
