@@ -12,7 +12,9 @@ yarn add -E @depack/cache
 
 - [Table Of Contents](#table-of-contents)
 - [API](#api)
-- [`compare(path: string, cache?: object, log?: function): CompareResult`](#comparepath-stringcache-objectlog-function-compareresult)
+- [`compare(path: string, cache?: Cache, log?: function): CompareResult`](#comparepath-stringcache-cachelog-function-compareresult)
+  * [`Cache`](#type-cache)
+  * [`CacheEntry`](#type-cacheentry)
   * [No Cache](#no-cache)
 - [Copyright](#copyright)
 
@@ -28,9 +30,18 @@ import compare from '@depack/cache'
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/1.svg?sanitize=true"></a></p>
 
-## `compare(`<br/>&nbsp;&nbsp;`path: string,`<br/>&nbsp;&nbsp;`cache?: object,`<br/>&nbsp;&nbsp;`log?: function,`<br/>`): CompareResult`
+## `compare(`<br/>&nbsp;&nbsp;`path: string,`<br/>&nbsp;&nbsp;`cache?: Cache,`<br/>&nbsp;&nbsp;`log?: function,`<br/>`): CompareResult`
 
-Checks the entry file's mtime, calculates its dependencies and compare against the values stored in the cache object. When the result is negative, the cache object must be updated with the result returned by the function. The `log` function is used to display what changes have been made to the dependencies.
+Checks the entry file's `mtime`, calculates its dependencies and compare against the values stored in the cache object. When the result is negative, the cache object must be updated with the result returned by the function. The `log` function is used to display what changes have been made to the dependencies.
+
+`Object<string, CacheEntry>` __<a name="type-cache">`Cache`</a>__: Interface for the cache object.
+
+__<a name="type-cacheentry">`CacheEntry`</a>__: A single entry in the cache.
+
+|    Name    |         Type          |                                                 Description                                                 |
+| ---------- | --------------------- | ----------------------------------------------------------------------------------------------------------- |
+| __mtime*__ | _number_              | The `mtime` of the source file.                                                                             |
+| __hash*__  | _Array&lt;string&gt;_ | The analysis array containing strings with internal, external and built-in dependencies and their versions. |
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/2.svg?sanitize=true" width="25"></a></p>
 

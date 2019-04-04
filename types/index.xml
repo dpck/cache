@@ -1,10 +1,13 @@
 <types>
-  <type name="Config" desc="Options for the program.">
-    <prop boolean name="shouldRun" default="true">
-      A boolean option.
+  <type name="Cache" type="Object<string, CacheEntry>"
+    desc="Interface for the cache object.">
+  </type>
+  <type name="CacheEntry" desc="A single entry in the cache.">
+    <prop number name="mtime">
+      The `mtime` of the source file.
     </prop>
-    <prop string name="text">
-      A text to return.
+    <prop type="Array<string>" name="hash">
+      The analysis array containing strings with internal, external and built-in dependencies and their versions.
     </prop>
   </type>
 </types>
