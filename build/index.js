@@ -1,29 +1,33 @@
-const { debuglog } = require('util');
-
-const LOG = debuglog('@depack/cache')
+const { createHash } = require('crypto');
+const { compareHash, analyse } = require('./lib');
 
 /**
  * Computes Necessary Information To Cache A Module, And Allows To Check If It Has Been Updated.
- * @param {Config} [config] Options for the program.
- * @param {boolean} [config.shouldRun=true] A boolean option. Default `true`.
- * @param {string} config.text A text to return.
+ * @param {string} mod The path to the module to look into.
+ * @param {Object<string, {mtime:string,hash:Array<string>}>} cache The current cache.
+ * @param {function} log The function to use to print updated bits of hash, such as sources.
  */
-               async function cache(config = {}) {
-  const {
-    shouldRun = true,
-    text,
-  } = config
-  if (!shouldRun) return
-  LOG('@depack/cache called with %s', text)
-  return text
+const compare = async (mod, cache = {}, log = console.log) => {
+  const current = cache[mod]
+  const { mtime, hash } = await analyse(mod)
+
+  let currentMtime, currentHash, crypto
+  if (current) {
+    ({ 'mtime': currentMtime, 'hash': currentHash, 'md5': crypto } = current)
+    const isHashSame = compareHash(currentHash, hash, log)
+    if (isHashSame ) return { result: true, md5: crypto }
+  }
+
+  const md5 = createHash('md5').update(JSON.stringify(hash)).digest("hex")
+  if (!current) return {
+    result: false, reason: 'NO_CACHE', mtime, hash, md5,
+  }
+
+  if (mtime != currentMtime) return {
+    result: false, reason: 'MTIME_CHANGE', mtime, hash, currentMtime, md5,
+  }
+
+  return { result: false, mtime, hash, reason: 'HASH_CHANGE', md5 }
 }
 
-/* documentary types/index.xml */
-/**
- * @typedef {Object} Config Options for the program.
- * @prop {boolean} [shouldRun=true] A boolean option. Default `true`.
- * @prop {string} text A text to return.
- */
-
-
-module.exports = cache
+module.exports=compare
