@@ -3,23 +3,19 @@
 The package is available by importing its default function:
 
 ```js
-import cache from '@depack/cache'
+import compare from '@depack/cache'
 ```
 
 %~%
 
-```## cache
+```## compare => CompareResult
 [
-  ["arg1", "string"],
-  ["arg2?", "boolean"]
+  ["path", "string"],
+  ["cache?", "object"],
+  ["log?", "function"]
 ]
 ```
 
-Call this function to get the result you want.
+Checks the entry file's mtime, calculates its dependencies and compare against the values stored in the cache object. When the result is negative, the cache object must be updated with the result returned by the function. The `log` function is used to display what changes have been made to the dependencies.
 
-%TYPEDEF types/index.xml%
-
-%EXAMPLE: example, ../src => @depack/cache%
-%FORK example%
-
-%~%
+%~ width="25"%
