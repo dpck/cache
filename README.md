@@ -143,13 +143,13 @@ console.log(res)
 ```js
 { result: false,
   reason: 'MTIME_CHANGE',
-  mtime: 1554400394000,
+  mtime: 1554400733000,
   hash: 
    [ 'os',
      'example/source/dep.js 1554389422000',
      'static-analysis 1.3.3',
      'myPackage 1.0.0' ],
-  currentMtime: 1554400393000,
+  currentMtime: 1554400732000,
   md5: 'c15feeca59ae71a943447324cfe36c18' }
 ```
 
@@ -157,32 +157,37 @@ console.log(res)
 
 ## Hash Update
 
-The hash is an array with strings that show what version of a dependency/file are used by the entry source file. They are saved in cache in the full array form rather than `md5` itself so that it is possible to log about when the changes were made and to which files.
+The hash is an array with strings that show what version of a dependency/file are used by the entry source file. They are saved in cache in the full array form rather than `md5` itself so that it is possible to log about when the changes were made and to which files. The changes will be logged using the function provided (`console.log` by default).
 
 ```js
 let cache = {}
 const { mtime, hash } = await compare(path, cache)
 cache[path] = { mtime, hash }
 await update()
-const res = await compare(path, cache)
+const res = await compare(path, cache, console.error)
 console.log(res)
 ```
-```js
-+ example/temp/source/dep.js 2019-4-4 20:53:16
+`stderr`
+```fs
++ example/temp/source/dep.js 2019-4-4 20:58:55
 + myPackage 1.0.1
 + path 
-- example/temp/source/dep.js 2019-4-4 20:53:15
+- example/temp/source/dep.js 2019-4-4 20:58:54
 - myPackage 1.0.0
+```
+
+
+```js
 { result: false,
-  mtime: 1554400395000,
+  mtime: 1554400736000,
   hash: 
    [ 'os',
-     'example/temp/source/dep.js 1554400396000',
+     'example/temp/source/dep.js 1554400737000',
      'static-analysis 1.3.3',
      'myPackage 1.0.1',
      'path' ],
   reason: 'HASH_CHANGE',
-  md5: '2812d6911c7f429a8a2153bf4792415e' }
+  md5: '5c6097d221b8b17e478d2a9ceccb13b0' }
 ```
 
 <p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/5.svg?sanitize=true"></a></p>

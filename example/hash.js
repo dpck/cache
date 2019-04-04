@@ -10,7 +10,7 @@ const HashExample = async (path, update) => {
   const { mtime, hash } = await compare(path, cache)
   cache[path] = { mtime, hash }
   await update()
-  const res = await compare(path, cache)
+  const res = await compare(path, cache, console.error)
   console.log(res)
   /* end example */
 }
