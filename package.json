@@ -1,6 +1,6 @@
 {
   "name": "@depack/cache",
-  "version": "0.0.0-pre",
+  "version": "1.0.0",
   "description": "Computes Necessary Information To Cache A Module, And Allows To Check If It Has Been Updated.",
   "main": "build/index.js",
   "module": "src/index.js",
