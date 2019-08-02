@@ -1,0 +1,9 @@
+{
+  "result": false,
+  "hash": [
+    "stream",
+    "test/temp/dep.js 1564789122000"
+  ],
+  "reason": "HASH_CHANGE",
+  "md5": "c5efce4adfae687114d8c8dfe75a5e2b"
+}

@@ -1,21 +1,13 @@
 import { join } from 'path'
 import { debuglog } from 'util'
+import TempContext from 'temp-context'
 
 const LOG = debuglog('@depack/cache')
 
 /**
  * A testing context for the package.
  */
-export default class Context {
-  async _init() {
-    LOG('init context')
-  }
-  /**
-   * Example method.
-   */
-  example() {
-    return 'OK'
-  }
+export default class Context extends TempContext {
   /**
    * A tagged template that returns the relative path to the fixture.
    * @param {string} file
@@ -25,8 +17,5 @@ export default class Context {
   fixture(file) {
     const f = file.raw[0]
     return join('test/fixture', f)
-  }
-  async _destroy() {
-    LOG('destroy context')
   }
 }
