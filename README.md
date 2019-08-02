@@ -5,7 +5,7 @@
 `@depack/cache` Computes Necessary Information To Cache A Module, And Allows To Check If It Has Been Updated. Does so with static analysis of source (mtimes), Node.JS built-ins (names) and package dependencies (versions).
 
 ```sh
-yarn add -E @depack/cache
+yarn add @depack/cache
 ```
 
 ## Table Of Contents
@@ -179,7 +179,7 @@ const res = await compare(path, cache, console.error)
 console.log(res)
 ```
 `stderr`
-```fs
+```diff
 + example/temp/source/dep.js 2019-8-3 02:44:05
 + myPackage 1.0.1
 + path 
@@ -207,9 +207,24 @@ console.log(res)
 
 ## Copyright
 
-(c) [Art Deco][1] 2019
-
-[1]: https://artd.eco/depack
+<table>
+  <tr>
+    <th>
+      <a href="https://artd.eco">
+        <img width="100" src="https://raw.githubusercontent.com/wrote/wrote/master/images/artdeco.png"
+          alt="Art Deco">
+      </a>
+    </th>
+    <th>© <a href="https://artd.eco">Art Deco</a> for <a href="https://compiler.page">Depack</a> 2019</th>
+    <th>
+      <a href="https://www.technation.sucks" title="Tech Nation Visa">
+        <img width="100" src="https://raw.githubusercontent.com/idiocc/cookies/master/wiki/arch4.jpg"
+          alt="Tech Nation Visa">
+      </a>
+    </th>
+    <th><a href="https://www.technation.sucks">Tech Nation Visa Sucks</a></th>
+  </tr>
+</table>
 
 <p align="center"><a href="#table-of-contents">
   <img src="/.documentary/section-breaks/-1.svg?sanitize=true">

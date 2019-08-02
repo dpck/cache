@@ -4,5 +4,5 @@ The hash is an array with strings that show what version of a dependency/file ar
 
 %EXAMPLE: example/hash, ../src => @depack/cache%
 `stderr`
-%FORKERR-fs example/hash%
+%FORKERR-diff example/hash%
 <!-- break onto the next file to prevent parallel exec -->
