@@ -1,9 +1,9 @@
-
+const _compare = require('./cache')
 
 /**
  * Computes Necessary Information To Cache A Module, And Allows To Check If It Has Been Updated.
  * @param {string} mod The path to the module to look into.
- * @param {_depack.Cache} cache The current cache.
+ * @param {_depack.Cache} cache Interface for the cache object.
  * @param {!Function} [log] The function to use to print updated bits of hash, such as sources.
  */
 function compare(mod, cache, log) {
@@ -35,6 +35,7 @@ module.exports = compare
  * @prop {boolean} result Whether the result of the comparison was successful.
  * @prop {string} reason The reason for the failed comparison. Can be either: `NO_CACHE`, `MTIME_CHANGE`, `HASH_CHANGE`.
  * @prop {number} mtime The `mtime` of when the entry file was changed.
+ * @prop {number} currentMtime The `mtime` from the cache passed to the function.
  * @prop {!Array<string>} hash The analysis array that is used for comparison and user-friendly display of what dependencies changed.
  * @prop {string} md5 The `md5` of the hash array.
  */

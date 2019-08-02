@@ -22,6 +22,9 @@
     <prop number name="mtime">
       The `mtime` of when the entry file was changed.
     </prop>
+    <prop number name="currentMtime">
+      The `mtime` from the cache passed to the function.
+    </prop>
     <prop type="!Array<string>" name="hash">
       The analysis array that is used for comparison and user-friendly display of what dependencies changed.
     </prop>

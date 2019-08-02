@@ -99,7 +99,7 @@ const P = async(a, b) => {
       }
     }
   }
-  return {path:a.startsWith(".") ? M("", b) : b, j:g};
+  return {path:a.startsWith(".") ? M("", b) : b, i:g};
 }, O = async a => {
   a = `${a}.js`;
   let b = await J(a);
@@ -368,7 +368,7 @@ module.exports = async(a, b = {}, c = console.log) => {
     return {result:!1, reason:"NO_CACHE", mtime:g, hash:f, md5:a};
   }
   const {mtime:d, hash:h} = b;
-  return g != d ? {result:!1, reason:"MTIME_CHANGE", mtime:g, hash:f, i:d, md5:a} : pa(h, f, c) ? {result:!0, md5:a} : {result:!1, mtime:g, hash:f, reason:"HASH_CHANGE", md5:a};
+  return g != d ? {result:!1, reason:"MTIME_CHANGE", mtime:g, hash:f, currentMtime:d, md5:a} : pa(h, f, c) ? {result:!0, md5:a} : {result:!1, mtime:g, hash:f, reason:"HASH_CHANGE", md5:a};
 };
 
 
