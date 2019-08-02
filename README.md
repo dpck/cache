@@ -13,15 +13,17 @@ yarn add -E @depack/cache
 - [Table Of Contents](#table-of-contents)
 - [API](#api)
 - [`compare(path: string, cache?: Cache, log?: function): Result`](#comparepath-stringcache-cachelog-function-result)
-  * [`Cache`](#type-cache)
-  * [`CacheEntry`](#type-cacheentry)
-  * [`Result`](#type-result)
+  * [`_depack.Cache`](#type-_depackcache)
+  * [`_depack.CacheEntry`](#type-_depackcacheentry)
+  * [`_depack.CacheResult`](#type-_depackcacheresult)
 - [No Cache](#no-cache)
 - [Mtime Change](#mtime-change)
 - [Hash Update](#hash-update)
 - [Copyright](#copyright)
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/0.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/0.svg?sanitize=true">
+</a></p>
 
 ## API
 
@@ -31,34 +33,39 @@ The package is available by importing its default function:
 import compare from '@depack/cache'
 ```
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/1.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/1.svg?sanitize=true">
+</a></p>
 
 ## `compare(`<br/>&nbsp;&nbsp;`path: string,`<br/>&nbsp;&nbsp;`cache?: Cache,`<br/>&nbsp;&nbsp;`log?: function,`<br/>`): Result`
 
 Checks the entry file's `mtime`, calculates its dependencies and compare against the values stored in the cache object. When the result is negative, the cache object must be updated with the result returned by the function. The `log` function is used to display what changes have been made to the dependencies.
 
-`Object<string, CacheEntry>` __<a name="type-cache">`Cache`</a>__: Interface for the cache object.
+<code>!Object&lt;string, <a href="#type-_depackcacheentry" title="A single entry in the cache.">_depack.CacheEntry</a>&gt;</code> <strong><a name="type-_depackcache">`_depack.Cache`</a></strong>: Interface for the cache object.
 
-__<a name="type-cacheentry">`CacheEntry`</a>__: A single entry in the cache.
+<strong><a name="type-_depackcacheentry">`_depack.CacheEntry`</a></strong>: A single entry in the cache.
 
-|    Name    |         Type          |                                                 Description                                                 |
-| ---------- | --------------------- | ----------------------------------------------------------------------------------------------------------- |
-| __mtime*__ | _number_              | The `mtime` of the source file.                                                                             |
-| __hash*__  | _Array&lt;string&gt;_ | The analysis array containing strings with internal, external and built-in dependencies and their versions. |
+|    Name    |             Type              |                                                 Description                                                 |
+| ---------- | ----------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| __mtime*__ | <em>number</em>               | The `mtime` of the source file.                                                                             |
+| __hash*__  | <em>!Array&lt;string&gt;</em> | The analysis array containing strings with internal, external and built-in dependencies and their versions. |
 
-__<a name="type-result">`Result`</a>__: The return type of the program.
+<strong><a name="type-_depackcacheresult">`_depack.CacheResult`</a></strong>: The return type of the program.
 
-|    Name     |                       Type                        |                                              Description                                               |
-| ----------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| __result*__ | _boolean_                                         | Whether the result of the comparison was successul.                                                    |
-| __reason*__ | _('NO_CACHE' \| 'MTIME_CHANGE' \| 'HASH_CHANGE')_ | The reason for the failed comparison.                                                                  |
-| __mtime*__  | _number_                                          | The `mtime` of when the entry file was changed.                                                        |
-| __hash*__   | _Array&lt;string&gt;_                             | The analysis array that is used for comparison and user-friendly display of what dependencies changed. |
-| __md5*__    | _string_                                          | The `md5` of the hash array.                                                                           |
+|       Name        |             Type              |                                              Description                                               |
+| ----------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------ |
+| __result*__       | <em>boolean</em>              | Whether the result of the comparison was successful.                                                   |
+| __reason*__       | <em>string</em>               | The reason for the failed comparison. Can be either: `NO_CACHE`, `MTIME_CHANGE`, `HASH_CHANGE`.        |
+| __mtime*__        | <em>number</em>               | The `mtime` of when the entry file was changed.                                                        |
+| __currentMtime*__ | <em>number</em>               | The `mtime` from the cache passed to the function.                                                     |
+| __hash*__         | <em>!Array&lt;string&gt;</em> | The analysis array that is used for comparison and user-friendly display of what dependencies changed. |
+| __md5*__          | <em>string</em>               | The `md5` of the hash array.                                                                           |
 
 There are multiple scenarios when using this package. Examples of each are given in the examples below.
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/2.svg?sanitize=true" width="25"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/2.svg?sanitize=true" width="25">
+</a></p>
 
 ## No Cache
 
@@ -121,12 +128,14 @@ _It will return the result that indicates that the cache does not exist, and pro
   hash: 
    [ 'os',
      'example/source/dep.js 1554389422000',
-     'static-analysis 1.3.3',
+     'static-analysis 1.7.1',
      'myPackage 1.0.0' ],
-  md5: 'c15feeca59ae71a943447324cfe36c18' }
+  md5: 'd6deeb6a05eacc18a57f544a99ad18c2' }
 ```
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/3.svg?sanitize=true" width="25"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/3.svg?sanitize=true" width="25">
+</a></p>
 
 ## Mtime Change
 
@@ -143,17 +152,19 @@ console.log(res)
 ```js
 { result: false,
   reason: 'MTIME_CHANGE',
-  mtime: 1554400733000,
+  mtime: 1564789443000,
   hash: 
    [ 'os',
      'example/source/dep.js 1554389422000',
-     'static-analysis 1.3.3',
+     'static-analysis 1.7.1',
      'myPackage 1.0.0' ],
-  currentMtime: 1554400732000,
-  md5: 'c15feeca59ae71a943447324cfe36c18' }
+  currentMtime: 1564789442000,
+  md5: 'd6deeb6a05eacc18a57f544a99ad18c2' }
 ```
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/4.svg?sanitize=true" width="25"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/4.svg?sanitize=true" width="25">
+</a></p>
 
 ## Hash Update
 
@@ -169,28 +180,30 @@ console.log(res)
 ```
 `stderr`
 ```fs
-+ example/temp/source/dep.js 2019-4-4 20:58:55
++ example/temp/source/dep.js 2019-8-3 02:44:05
 + myPackage 1.0.1
 + path 
-- example/temp/source/dep.js 2019-4-4 20:58:54
+- example/temp/source/dep.js 2019-8-3 02:44:03
 - myPackage 1.0.0
 ```
 
 
 ```js
 { result: false,
-  mtime: 1554400736000,
+  mtime: 1564789443000,
   hash: 
    [ 'os',
-     'example/temp/source/dep.js 1554400737000',
-     'static-analysis 1.3.3',
+     'example/temp/source/dep.js 1564789445000',
+     'static-analysis 1.7.1',
      'myPackage 1.0.1',
      'path' ],
   reason: 'HASH_CHANGE',
-  md5: '5c6097d221b8b17e478d2a9ceccb13b0' }
+  md5: '9f4263bed0c584cbb23aebfa2dc65791' }
 ```
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/5.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/5.svg?sanitize=true">
+</a></p>
 
 ## Copyright
 
@@ -198,4 +211,6 @@ console.log(res)
 
 [1]: https://artd.eco/depack
 
-<p align="center"><a href="#table-of-contents"><img src=".documentary/section-breaks/-1.svg?sanitize=true"></a></p>
+<p align="center"><a href="#table-of-contents">
+  <img src="/.documentary/section-breaks/-1.svg?sanitize=true">
+</a></p>
