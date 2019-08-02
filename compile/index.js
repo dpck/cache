@@ -3,8 +3,9 @@ const _compare = require('./cache')
 /**
  * Computes Necessary Information To Cache A Module, And Allows To Check If It Has Been Updated.
  * @param {string} mod The path to the module to look into.
- * @param {_depack.Cache} cache Interface for the cache object.
+ * @param {_depack.Cache} cache The current cache object, where modules (first arg) are keys, and { `mtime`, `hash` } are properties.
  * @param {!Function} [log] The function to use to print updated bits of hash, such as sources.
+ * @returns {_depack.CacheResult}
  */
 function compare(mod, cache, log) {
   return _compare(mod, cache, log)

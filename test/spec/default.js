@@ -1,4 +1,4 @@
-import { equal, ok, deepEqual } from '@zoroaster/assert'
+import { equal, ok } from '@zoroaster/assert'
 import Context from '../context'
 import cache from '../../src'
 
@@ -65,6 +65,8 @@ console.log('hello world')
     })
     ok(Number.isInteger(res.mtime))
     delete res.mtime
+    delete res.hash
+    delete res.md5
     return res
   },
 }
