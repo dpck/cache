@@ -35,14 +35,13 @@ const getMetaToPrint = (mm) => {
   const [entry, meta] = mm.split(' ')
   let mmeta = ''
   if (meta) {
-    mmeta = /^\d+$/.test(meta) ? new Date(parseInt(meta)).toLocaleString() : meta
+    mmeta = /^\d+$/.test(meta) ? new Date(parseInt(meta, 10)).toLocaleString() : meta
   }
   return { entry, mmeta }
 }
 
 export const getMtime = async (entry) => {
-  /** @type {import('fs').Stats} */
-  const stat = await makePromise(lstat, entry)
+  const stat = /** @type {!fs.Stats} */ (await makePromise(lstat, entry))
   const mtime = stat.mtime
   return mtime.getTime()
 }
@@ -70,3 +69,8 @@ export const analyse = async (mod) => {
 
   return { mtime: mmtime, hash, analysis }
 }
+
+/**
+ * @suppress {nonStandardJsDocs}
+ * @typedef {import('fs').Stats} fs.Stats
+ */

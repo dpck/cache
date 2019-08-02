@@ -2,26 +2,28 @@
   "name": "@depack/cache",
   "version": "1.0.0",
   "description": "Computes Necessary Information To Cache A Module, And Allows To Check If It Has Been Updated.",
-  "main": "build/index.js",
+  "main": "compile/index.js",
   "module": "src/index.js",
   "scripts": {
     "t": "zoroaster -a",
     "test": "yarn t test/spec test/mask",
     "spec": "yarn t test/spec",
     "mask": "yarn t test/mask",
-    "test-build": "ALAMODE_ENV=test-build yarn test",
+    "test-compile": "ALAMODE_ENV=test-compile yarn test",
+    "compile": "depack-dev src/depack -o compile/cache.js -a -c -p -s -O 2018 --source_map_include_content",
     "lint": "eslint .",
     "doc": "NODE_DEBUG=doc doc documentary -o README.md",
-    "b": "alamode src -o build -s",
-    "d": "yarn-s d1",
-    "d1": "NODE_DEBUG=doc doc src/index.js -g",
-    "build": "yarn-s d b doc",
+    "d": "yarn-s d1 externs",
+    "d1": "typal compile/index.js -c",
+    "externs": "typal types/externs.js",
     "e": "alanode"
   },
   "files": [
-    "build",
+    "compile",
+    "types/externs.js",
     "src"
   ],
+  "externs": "types/externs.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/dpck/cache.git"
@@ -41,17 +43,17 @@
   },
   "homepage": "https://github.com/dpck/cache#readme",
   "devDependencies": {
-    "alamode": "^1.9.1",
-    "documentary": "^1.23.2",
+    "alamode": "^2.3.6",
+    "documentary": "^1.29.0",
     "eslint-config-artdeco": "^1.0.1",
-    "temp-context": "^2.1.2",
+    "temp-context": "^2.1.3",
     "yarn-s": "^1.1.0",
-    "zoroaster": "^3.11.3"
+    "zoroaster": "^4.1.1-alpha"
   },
-  "dependencies": {
-    "erte": "^1.1.7",
-    "makepromise": "^3.0.3",
-    "resolve-dependency": "^1.0.2",
-    "static-analysis": "^1.3.3"
+  "srcDependencies": {
+    "erte": "^1.2.0",
+    "makepromise": "^3.1.0",
+    "resolve-dependency": "^1.0.3",
+    "static-analysis": "^1.7.1"
   }
 }

@@ -1,26 +1,28 @@
-<types>
-  <type name="Cache" type="Object<string, CacheEntry>"
+<types namespace="_depack">
+  <type name="Cache" type="!Object<string, _depack.CacheEntry>"
     desc="Interface for the cache object.">
   </type>
+
   <type name="CacheEntry" desc="A single entry in the cache.">
     <prop number name="mtime">
       The `mtime` of the source file.
     </prop>
-    <prop type="Array<string>" name="hash">
+    <prop type="!Array<string>" name="hash">
       The analysis array containing strings with internal, external and built-in dependencies and their versions.
     </prop>
   </type>
-  <type name="Result" desc="The return type of the program.">
+  
+  <type name="CacheResult" desc="The return type of the program.">
     <prop boolean name="result">
-      Whether the result of the comparison was successul.
+      Whether the result of the comparison was successful.
     </prop>
-    <prop type="('NO_CACHE'|'MTIME_CHANGE'|'HASH_CHANGE')" name="reason">
-      The reason for the failed comparison.
+    <prop type="string" name="reason">
+      The reason for the failed comparison. Can be either: `NO_CACHE`, `MTIME_CHANGE`, `HASH_CHANGE`.
     </prop>
     <prop number name="mtime">
       The `mtime` of when the entry file was changed.
     </prop>
-    <prop type="Array<string>" name="hash">
+    <prop type="!Array<string>" name="hash">
       The analysis array that is used for comparison and user-friendly display of what dependencies changed.
     </prop>
     <prop string name="md5">
