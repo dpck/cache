@@ -15,9 +15,9 @@ npm i @depack/cache
 - [Table Of Contents](#table-of-contents)
 - [API](#api)
 - [`compare(path: string, cache?: Cache, log?: function): Result`](#comparepath-stringcache-cachelog-function-result)
-  * [`_depack.Cache`](#type-_depackcache)
-  * [`_depack.CacheEntry`](#type-_depackcacheentry)
-  * [`_depack.CacheResult`](#type-_depackcacheresult)
+  * [`Cache`](#type-cache)
+  * [`CacheEntry`](#type-cacheentry)
+  * [`CacheResult`](#type-cacheresult)
 - [No Cache](#no-cache)
 - [Mtime Change](#mtime-change)
 - [Hash Update](#hash-update)
@@ -43,16 +43,16 @@ import compare from '@depack/cache'
 
 Checks the entry file's `mtime`, calculates its dependencies and compare against the values stored in the cache object. When the result is negative, the cache object must be updated with the result returned by the function. The `log` function is used to display what changes have been made to the dependencies.
 
-<code>!Object&lt;string, <a href="#type-_depackcacheentry" title="A single entry in the cache.">_depack.CacheEntry</a>&gt;</code> <strong><a name="type-_depackcache">`_depack.Cache`</a></strong>: Interface for the cache object.
+<code>!Object&lt;string, <a href="#type-cacheentry" title="A single entry in the cache.">CacheEntry</a>&gt;</code> __<a name="type-cache">`Cache`</a>__: Interface for the cache object.
 
-<strong><a name="type-_depackcacheentry">`_depack.CacheEntry`</a></strong>: A single entry in the cache.
+__<a name="type-cacheentry">`CacheEntry`</a>__: A single entry in the cache.
 
 |    Name    |             Type              |                                                 Description                                                 |
 | ---------- | ----------------------------- | ----------------------------------------------------------------------------------------------------------- |
 | __mtime*__ | <em>number</em>               | The `mtime` of the source file.                                                                             |
 | __hash*__  | <em>!Array&lt;string&gt;</em> | The analysis array containing strings with internal, external and built-in dependencies and their versions. |
 
-<strong><a name="type-_depackcacheresult">`_depack.CacheResult`</a></strong>: The return type of the program.
+__<a name="type-cacheresult">`CacheResult`</a>__: The return type of the program.
 
 |       Name        |             Type              |                                              Description                                               |
 | ----------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------ |
