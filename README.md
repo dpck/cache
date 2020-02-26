@@ -61,14 +61,14 @@ __<a name="type-cacheentry">`CacheEntry`</a>__: A single entry in the cache.
 __<a name="type-cacheresult">`CacheResult`</a>__: The return type of the program.
 
 
-|       Name        |             Type              |                                              Description                                               |
-| ----------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------ |
-| __result*__       | <em>boolean</em>              | Whether the result of the comparison was successful.                                                   |
-| __reason*__       | <em>string</em>               | The reason for the failed comparison. Can be either: `NO_CACHE`, `MTIME_CHANGE`, `HASH_CHANGE`.        |
-| __mtime*__        | <em>number</em>               | The `mtime` of when the entry file was changed.                                                        |
-| __currentMtime*__ | <em>number</em>               | The `mtime` from the cache passed to the function.                                                     |
-| __hash*__         | <em>!Array&lt;string&gt;</em> | The analysis array that is used for comparison and user-friendly display of what dependencies changed. |
-| __md5*__          | <em>string</em>               | The `md5` of the hash array.                                                                           |
+|     Name     |             Type              |                                              Description                                               |
+| ------------ | ----------------------------- | ------------------------------------------------------------------------------------------------------ |
+| __result*__  | <em>boolean</em>              | Whether the result of the comparison was successful.                                                   |
+| reason       | <em>string</em>               | The reason for the failed comparison. Can be either: `NO_CACHE`, `MTIME_CHANGE`, `HASH_CHANGE`.        |
+| mtime        | <em>number</em>               | The `mtime` of when the entry file was changed.                                                        |
+| currentMtime | <em>number</em>               | The `mtime` from the cache passed to the function.                                                     |
+| hash         | <em>!Array&lt;string&gt;</em> | The analysis array that is used for comparison and user-friendly display of what dependencies changed. |
+| __md5*__     | <em>string</em>               | The `md5` of the hash array.                                                                           |
 
 There are multiple scenarios when using this package. Examples of each are given in the examples below.
 
@@ -165,14 +165,14 @@ console.log(res)
 {
   result: false,
   reason: 'MTIME_CHANGE',
-  mtime: 1582738528000,
+  mtime: 1582738908000,
   hash: [
     'os',
     'example/source/dep.js 1554389422000',
     'static-analysis 2.1.1',
     'myPackage 1.0.0'
   ],
-  currentMtime: 1582738527000,
+  currentMtime: 1582738907000,
   md5: '980d26e614a016566682df0ddd47bb6f'
 }
 ```
@@ -195,10 +195,10 @@ console.log(res)
 ```
 `stderr`
 ```diff
-+ example/temp/source/dep.js 2/26/2020, 20:35:29
++ example/temp/source/dep.js 2/26/2020, 20:41:50
 + myPackage 1.0.1
 + path 
-- example/temp/source/dep.js 2/26/2020, 20:35:28
+- example/temp/source/dep.js 2/26/2020, 20:41:49
 - myPackage 1.0.0
 ```
 
@@ -206,16 +206,16 @@ console.log(res)
 ```js
 {
   result: false,
-  mtime: 1582738528000,
+  mtime: 1582738909000,
   hash: [
     'os',
-    'example/temp/source/dep.js 1582738529000',
+    'example/temp/source/dep.js 1582738910000',
     'static-analysis 2.1.1',
     'myPackage 1.0.1',
     'path'
   ],
   reason: 'HASH_CHANGE',
-  md5: 'c1c71249126eb58269b22281b14a8568'
+  md5: '8ee4ba1189bd9cae5132e49a0d48856c'
 }
 ```
 

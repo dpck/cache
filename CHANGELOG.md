@@ -1,5 +1,9 @@
 ## 26 February 2020
 
+### [1.2.1](https://github.com/dpck/cache/compare/v1.2.0...v1.2.1)
+
+- [fix] Fix compiler warnings for opt returns.
+
 ### [1.2.0](https://github.com/dpck/cache/compare/v1.1.0...v1.2.0)
 
 - [doc] Add `typedefs.json`.
