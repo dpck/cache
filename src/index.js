@@ -1,12 +1,7 @@
 import { createHash } from 'crypto'
 import { compareHash, analyse } from './lib'
 
-/**
- * Computes Necessary Information To Cache A Module, And Allows To Check If It Has Been Updated.
- * @param {string} mod The path to the module to look into.
- * @param {_depack.Cache} cache The current cache.
- * @param {!Function} [log] The function to use to print updated bits of hash, such as sources.
- */
+/** @type {_depack.compare} */
 const compare = async (mod, cache = {}, log = console.log) => {
   const current = cache[mod]
   const { mtime, hash } = await analyse(mod)
@@ -36,5 +31,5 @@ export default compare
 
 /**
  * @suppress {nonStandardJsDocs}
- * @typedef {import('..').Cache} _depack.Cache 
+ * @typedef {import('../types').compare} _depack.compare
  */

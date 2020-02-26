@@ -21,3 +21,10 @@ _depack.CacheEntry
  * @typedef {{ result: boolean, reason: string, mtime: number, currentMtime: number, hash: !Array<string>, md5: string }}
  */
 _depack.CacheResult
+
+/* typal types/api.xml externs */
+/**
+ * Checks the entry file's `mtime`, calculates its dependencies and compare against the values stored in the cache object. When the result is negative, the cache object must be updated with the result returned by the function.
+ * @typedef {function(string,!_depack.Cache=,!Function=): !Promise<!_depack.CacheResult>}
+ */
+_depack.compare

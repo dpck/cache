@@ -1,0 +1,11 @@
+<types ns="_depack">
+  <method name="compare" async return="!_depack.CacheResult">
+    <arg string name="path"> The path to the JS file.</arg>
+    <arg opt type="!_depack.Cache" name="cache">Current cache object.</arg>
+    <arg opt type="!Function" name="log">
+      The function used to display what changes have been made to the dependencies.
+    </arg>
+
+    Checks the entry file's `mtime`, calculates its dependencies and compare against the values stored in the cache object. When the result is negative, the cache object must be updated with the result returned by the function.
+  </method>
+</types>

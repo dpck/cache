@@ -1,3 +1,9 @@
+## 26 February 2020
+
+### [1.2.0](https://github.com/dpck/cache/compare/v1.1.0...v1.2.0)
+
+- [doc] Add `typedefs.json`.
+
 ## 3 August 2019
 
 ### [1.1.0](https://github.com/dpck/cache/compare/v1.0.0...v1.1.0)

@@ -14,7 +14,7 @@ npm i @depack/cache
 
 - [Table Of Contents](#table-of-contents)
 - [API](#api)
-- [`compare(path: string, cache?: Cache, log?: function): Result`](#comparepath-stringcache-cachelog-function-result)
+- [`async compare(path: string, cache=: !Cache, log=: !Function): !CacheResult`](#async-comparepath-stringcache-cachelog-function-cacheresult)
   * [`Cache`](#type-cache)
   * [`CacheEntry`](#type-cacheentry)
   * [`CacheResult`](#type-cacheresult)
@@ -39,20 +39,27 @@ import compare from '@depack/cache'
   <img src="/.documentary/section-breaks/1.svg?sanitize=true">
 </a></p>
 
-## <code><ins>compare</ins>(</code><sub><br/>&nbsp;&nbsp;`path: string,`<br/>&nbsp;&nbsp;`cache?: Cache,`<br/>&nbsp;&nbsp;`log?: function,`<br/></sub><code>): <i>Result</i></code>
+## <code>async <ins>compare</ins>(</code><sub><br/>&nbsp;&nbsp;`path: string,`<br/>&nbsp;&nbsp;`cache=: !Cache,`<br/>&nbsp;&nbsp;`log=: !Function,`<br/></sub><code>): <i>!CacheResult</i></code>
+Checks the entry file's `mtime`, calculates its dependencies and compare against the values stored in the cache object. When the result is negative, the cache object must be updated with the result returned by the function.
 
-Checks the entry file's `mtime`, calculates its dependencies and compare against the values stored in the cache object. When the result is negative, the cache object must be updated with the result returned by the function. The `log` function is used to display what changes have been made to the dependencies.
+ - <kbd><strong>path*</strong></kbd> <em>`string`</em>: The path to the JS file.
+ - <kbd>cache</kbd> <em><code><a href="#type-cache" title="Interface for the cache object.">!Cache</a></code></em> (optional): Current cache object.
+ - <kbd>log</kbd> <em>`!Function`</em> (optional): The function used to display what changes have been made to the dependencies.
 
 <code>!Object&lt;string, <a href="#type-cacheentry" title="A single entry in the cache.">CacheEntry</a>&gt;</code> __<a name="type-cache">`Cache`</a>__: Interface for the cache object.
 
+
 __<a name="type-cacheentry">`CacheEntry`</a>__: A single entry in the cache.
+
 
 |    Name    |             Type              |                                                 Description                                                 |
 | ---------- | ----------------------------- | ----------------------------------------------------------------------------------------------------------- |
 | __mtime*__ | <em>number</em>               | The `mtime` of the source file.                                                                             |
 | __hash*__  | <em>!Array&lt;string&gt;</em> | The analysis array containing strings with internal, external and built-in dependencies and their versions. |
 
+
 __<a name="type-cacheresult">`CacheResult`</a>__: The return type of the program.
+
 
 |       Name        |             Type              |                                              Description                                               |
 | ----------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------ |
@@ -158,14 +165,14 @@ console.log(res)
 {
   result: false,
   reason: 'MTIME_CHANGE',
-  mtime: 1582737420000,
+  mtime: 1582738528000,
   hash: [
     'os',
     'example/source/dep.js 1554389422000',
     'static-analysis 2.1.1',
     'myPackage 1.0.0'
   ],
-  currentMtime: 1582737419000,
+  currentMtime: 1582738527000,
   md5: '980d26e614a016566682df0ddd47bb6f'
 }
 ```
@@ -188,10 +195,10 @@ console.log(res)
 ```
 `stderr`
 ```diff
-+ example/temp/source/dep.js 2/26/2020, 20:17:02
++ example/temp/source/dep.js 2/26/2020, 20:35:29
 + myPackage 1.0.1
 + path 
-- example/temp/source/dep.js 2/26/2020, 20:17:00
+- example/temp/source/dep.js 2/26/2020, 20:35:28
 - myPackage 1.0.0
 ```
 
@@ -199,16 +206,16 @@ console.log(res)
 ```js
 {
   result: false,
-  mtime: 1582737420000,
+  mtime: 1582738528000,
   hash: [
     'os',
-    'example/temp/source/dep.js 1582737422000',
+    'example/temp/source/dep.js 1582738529000',
     'static-analysis 2.1.1',
     'myPackage 1.0.1',
     'path'
   ],
   reason: 'HASH_CHANGE',
-  md5: '310d4304121ca049f7f8f30c31b4b7d1'
+  md5: 'c1c71249126eb58269b22281b14a8568'
 }
 ```
 

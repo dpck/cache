@@ -13,5 +13,9 @@
   },
   "undefinedcompare": {
     "link": "https://github.com/dpck/cache#comparepath-stringcache-cachelog-function-result"
+  },
+  "_depack.compare": {
+    "link": "https://github.com/dpck/cache#async-comparepath-stringcache-cachelog-function-cacheresult",
+    "description": "Checks the entry file's `mtime`, calculates its dependencies and compare against the values stored in the cache object. When the result is negative, the cache object must be updated with the result returned by the function."
   }
 }

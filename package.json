@@ -14,7 +14,7 @@
     "lint": "eslint .",
     "doc": "doc -o README.md -d -a -n _depack",
     "d": "yarn-s d1 externs",
-    "d1": "typal compile/index.js -c",
+    "d1": "typal types/index.js compile/index.js -u -t types",
     "externs": "typal types/externs.js",
     "e": "alanode"
   },
@@ -43,7 +43,7 @@
   "bugs": {
     "url": "https://github.com/dpck/cache/issues"
   },
-  "homepage": "https://github.com/dpck/cache#readme",
+  "homepage": "https://www.compiler.page",
   "devDependencies": {
     "@depack/detect": "^1.1.0",
     "@depack/split": "^1.0.0",
