@@ -29,6 +29,28 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "Launch Documentary",
+      "program": "${workspaceFolder}/node_modules/.bin/doc",
+      "env": {
+        "NODE_DEBUG": "@depack/cache",
+        "DOCUMENTARY_SKIP_USER_COMPONENTS": "false"
+      },
+      "console": "integratedTerminal",
+      "args": [
+        "-o",
+        "README.md",
+        "-d",
+        " -a",
+        " -n",
+        "_depack"
+      ],
+      "skipFiles": [
+        "<node_internals>/**/*.js"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "Launch Example",
       "program": "${workspaceFolder}/node_modules/.bin/alanode",
       "env": {

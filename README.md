@@ -1,11 +1,13 @@
 # @depack/cache
 
-[![npm version](https://badge.fury.io/js/%40depack%2Fcache.svg)](https://npmjs.org/package/@depack/cache)
+[![npm version](https://badge.fury.io/js/%40depack%2Fcache.svg)](https://www.npmjs.com/package/@depack/cache)
+![Node.js CI](https://github.com/dpck/cache/workflows/Node.js%20CI/badge.svg)
 
 `@depack/cache` Computes Necessary Information To Cache A Module, And Allows To Check If It Has Been Updated. Does so with static analysis of source (mtimes), Node.JS built-ins (names) and package dependencies (versions).
 
 ```sh
 yarn add @depack/cache
+npm i @depack/cache
 ```
 
 ## Table Of Contents
@@ -37,7 +39,7 @@ import compare from '@depack/cache'
   <img src="/.documentary/section-breaks/1.svg?sanitize=true">
 </a></p>
 
-## `compare(`<br/>&nbsp;&nbsp;`path: string,`<br/>&nbsp;&nbsp;`cache?: Cache,`<br/>&nbsp;&nbsp;`log?: function,`<br/>`): Result`
+## <code><ins>compare</ins>(</code><sub><br/>&nbsp;&nbsp;`path: string,`<br/>&nbsp;&nbsp;`cache?: Cache,`<br/>&nbsp;&nbsp;`log?: function,`<br/></sub><code>): <i>Result</i></code>
 
 Checks the entry file's `mtime`, calculates its dependencies and compare against the values stored in the cache object. When the result is negative, the cache object must be updated with the result returned by the function. The `log` function is used to display what changes have been made to the dependencies.
 
@@ -122,15 +124,18 @@ const writeCache = (entry) => {
 _It will return the result that indicates that the cache does not exist, and provide all information that should be written in cache so that it can be retrieved next time:_
 
 ```js
-{ result: false,
+{
+  result: false,
   reason: 'NO_CACHE',
   mtime: 1554399982000,
-  hash: 
-   [ 'os',
-     'example/source/dep.js 1554389422000',
-     'static-analysis 1.7.1',
-     'myPackage 1.0.0' ],
-  md5: 'd6deeb6a05eacc18a57f544a99ad18c2' }
+  hash: [
+    'os',
+    'example/source/dep.js 1554389422000',
+    'static-analysis 2.1.1',
+    'myPackage 1.0.0'
+  ],
+  md5: '980d26e614a016566682df0ddd47bb6f'
+}
 ```
 
 <p align="center"><a href="#table-of-contents">
@@ -150,16 +155,19 @@ const res = await compare(path, cache)
 console.log(res)
 ```
 ```js
-{ result: false,
+{
+  result: false,
   reason: 'MTIME_CHANGE',
-  mtime: 1564789443000,
-  hash: 
-   [ 'os',
-     'example/source/dep.js 1554389422000',
-     'static-analysis 1.7.1',
-     'myPackage 1.0.0' ],
-  currentMtime: 1564789442000,
-  md5: 'd6deeb6a05eacc18a57f544a99ad18c2' }
+  mtime: 1582737420000,
+  hash: [
+    'os',
+    'example/source/dep.js 1554389422000',
+    'static-analysis 2.1.1',
+    'myPackage 1.0.0'
+  ],
+  currentMtime: 1582737419000,
+  md5: '980d26e614a016566682df0ddd47bb6f'
+}
 ```
 
 <p align="center"><a href="#table-of-contents">
@@ -180,25 +188,28 @@ console.log(res)
 ```
 `stderr`
 ```diff
-+ example/temp/source/dep.js 2019-8-3 02:44:05
++ example/temp/source/dep.js 2/26/2020, 20:17:02
 + myPackage 1.0.1
 + path 
-- example/temp/source/dep.js 2019-8-3 02:44:03
+- example/temp/source/dep.js 2/26/2020, 20:17:00
 - myPackage 1.0.0
 ```
 
 
 ```js
-{ result: false,
-  mtime: 1564789443000,
-  hash: 
-   [ 'os',
-     'example/temp/source/dep.js 1564789445000',
-     'static-analysis 1.7.1',
-     'myPackage 1.0.1',
-     'path' ],
+{
+  result: false,
+  mtime: 1582737420000,
+  hash: [
+    'os',
+    'example/temp/source/dep.js 1582737422000',
+    'static-analysis 2.1.1',
+    'myPackage 1.0.1',
+    'path'
+  ],
   reason: 'HASH_CHANGE',
-  md5: '9f4263bed0c584cbb23aebfa2dc65791' }
+  md5: '310d4304121ca049f7f8f30c31b4b7d1'
+}
 ```
 
 <p align="center"><a href="#table-of-contents">
@@ -210,19 +221,12 @@ console.log(res)
 <table>
   <tr>
     <th>
-      <a href="https://artd.eco">
+      <a href="https://www.artd.eco">
         <img width="100" src="https://raw.githubusercontent.com/wrote/wrote/master/images/artdeco.png"
           alt="Art Deco">
       </a>
     </th>
-    <th>© <a href="https://artd.eco">Art Deco</a> for <a href="https://compiler.page">Depack</a> 2019</th>
-    <th>
-      <a href="https://www.technation.sucks" title="Tech Nation Visa">
-        <img width="100" src="https://raw.githubusercontent.com/idiocc/cookies/master/wiki/arch4.jpg"
-          alt="Tech Nation Visa">
-      </a>
-    </th>
-    <th><a href="https://www.technation.sucks">Tech Nation Visa Sucks</a></th>
+    <th>© <a href="https://www.artd.eco">Art Deco™</a> for <a href="https://artd.eco/depack">Depack</a> 2020</th>
   </tr>
 </table>
 

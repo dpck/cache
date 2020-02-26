@@ -1,0 +1,17 @@
+{
+  "_depack.Cache": {
+    "link": "https://github.com/dpck/cache#type-cache",
+    "description": "Interface for the cache object."
+  },
+  "_depack.CacheEntry": {
+    "link": "https://github.com/dpck/cache#type-cacheentry",
+    "description": "A single entry in the cache."
+  },
+  "_depack.CacheResult": {
+    "link": "https://github.com/dpck/cache#type-cacheresult",
+    "description": "The return type of the program."
+  },
+  "undefinedcompare": {
+    "link": "https://github.com/dpck/cache#comparepath-stringcache-cachelog-function-result"
+  }
+}

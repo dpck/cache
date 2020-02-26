@@ -29,6 +29,7 @@
     "type": "git",
     "url": "git://github.com/dpck/cache.git"
   },
+  "typedefs": "typedefs.json",
   "keywords": [
     "cache",
     "depack",

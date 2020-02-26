@@ -4,6 +4,6 @@
 
 ## Copyright
 
-<footer client="Depack" clientLink="https://compiler.page" />
+<depack-footer />
 
 %~ -1%
