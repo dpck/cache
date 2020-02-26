@@ -18,7 +18,7 @@ _depack.Cache
 _depack.CacheEntry
 /**
  * The return type of the program.
- * @typedef {{ result: boolean, reason: string, mtime: number, currentMtime: number, hash: !Array<string>, md5: string }}
+ * @typedef {{ result: boolean, reason: (string|undefined), mtime: (number|undefined), currentMtime: (number|undefined), hash: ((!Array<string>)|undefined), md5: string }}
  */
 _depack.CacheResult
 

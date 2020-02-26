@@ -11,21 +11,21 @@
       The analysis array containing strings with internal, external and built-in dependencies and their versions.
     </prop>
   </type>
-  
+
   <type name="CacheResult" desc="The return type of the program.">
     <prop boolean name="result">
       Whether the result of the comparison was successful.
     </prop>
-    <prop type="string" name="reason">
+    <prop opt string name="reason">
       The reason for the failed comparison. Can be either: `NO_CACHE`, `MTIME_CHANGE`, `HASH_CHANGE`.
     </prop>
-    <prop number name="mtime">
+    <prop opt number name="mtime">
       The `mtime` of when the entry file was changed.
     </prop>
-    <prop number name="currentMtime">
+    <prop opt number name="currentMtime">
       The `mtime` from the cache passed to the function.
     </prop>
-    <prop type="!Array<string>" name="hash">
+    <prop opt type="!Array<string>" name="hash">
       The analysis array that is used for comparison and user-friendly display of what dependencies changed.
     </prop>
     <prop string name="md5">

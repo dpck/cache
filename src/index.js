@@ -6,7 +6,7 @@ const compare = async (mod, cache = {}, log = console.log) => {
   const current = cache[mod]
   const { mtime, hash } = await analyse(mod)
 
-  const md5 = createHash('md5').update(JSON.stringify(hash)).digest("hex")
+  const md5 = /** @type {string} */ (createHash('md5').update(JSON.stringify(hash)).digest("hex"))
 
   if (!current) return {
     result: false, reason: 'NO_CACHE', mtime, hash, md5,

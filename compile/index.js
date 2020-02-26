@@ -24,9 +24,9 @@ module.exports = compare
  * @typedef {_depack.CacheResult} CacheResult The return type of the program.
  * @typedef {Object} _depack.CacheResult The return type of the program.
  * @prop {boolean} result Whether the result of the comparison was successful.
- * @prop {string} reason The reason for the failed comparison. Can be either: `NO_CACHE`, `MTIME_CHANGE`, `HASH_CHANGE`.
- * @prop {number} mtime The `mtime` of when the entry file was changed.
- * @prop {number} currentMtime The `mtime` from the cache passed to the function.
- * @prop {!Array<string>} hash The analysis array that is used for comparison and user-friendly display of what dependencies changed.
+ * @prop {string} [reason] The reason for the failed comparison. Can be either: `NO_CACHE`, `MTIME_CHANGE`, `HASH_CHANGE`.
+ * @prop {number} [mtime] The `mtime` of when the entry file was changed.
+ * @prop {number} [currentMtime] The `mtime` from the cache passed to the function.
+ * @prop {!Array<string>} [hash] The analysis array that is used for comparison and user-friendly display of what dependencies changed.
  * @prop {string} md5 The `md5` of the hash array.
  */
